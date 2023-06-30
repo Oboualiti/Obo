@@ -16,14 +16,42 @@ class CustomerForm(ModelForm):
             'full_name':forms.TextInput(attrs={
             "placeholder":"ادخل اسم الكامل",
             "class":"form-control",
+            "required":True,
             }),
             'city':forms.TextInput(attrs={
             "placeholder":"ادخل المدينة",
             "class":"form-control",
+            "required":True,
             }),
             'number':forms.NumberInput(attrs={
             "placeholder":"ادخل رقم الهاتف",
             "class":"form-control",
+            "required":True,
             }),
             
                 }
+        
+class CustomerbycartForm(ModelForm):
+    class Meta:
+        model = Customer_infobycart
+        fields = ("full_name","city","number")
+        widgets = {
+            'full_name':forms.TextInput(attrs={
+            "onkeyup":"getids()",   
+            "placeholder":"ادخل اسم الكامل",
+            "class":"form-control",
+            "required":True,
+            }),
+            'city':forms.TextInput(attrs={
+            "placeholder":"ادخل المدينة",
+            "onkeyup":"sommeup()", 
+            "class":"form-control",
+            "required":True,
+            }),
+            'number':forms.NumberInput(attrs={
+            "placeholder":"ادخل رقم الهاتف",
+            "class":"form-control",
+            "required":True,
+            }),
+            
+                }        
