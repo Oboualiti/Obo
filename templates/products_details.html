@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/product.css'%}">
-    <title>eco test</title>
+    <title>Obou Store</title>
   </head>
   <body>
  
@@ -18,31 +18,39 @@
  
   
   
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="{%url 'product:Home' %}">ecotest</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            
-            
-           
-             
-        
+    <nav dir="ltr" class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'product:Home' %}"><img class="logo" src="{% static 'img/logo.jpeg' %}"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'product:Home' %}">الرئسية <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                الفئة
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{%url 'product:tshirt'%}">القمصان</a>
+                <a class="dropdown-item" href="{%url 'product:pants'%}">السراويل</a>
+                <a class="dropdown-item" href="{%url 'product:shoes'%}">أحذية</a>
+                
+              </div>
+            </li>
+         
+        </ul>  
+      </div>
+    </nav>
+    <p id="hidden">{{prod.clasement}} </p>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'product:conditions'%}">conditions general</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'product:Home'%}">Home <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-        </div>
-        
-      </nav>
+    <!--cart shop-->
+    <div  class="shopping"><a href="{%url 'product:productcart'%}">
+      <p id="shoppingnumbre">0</p>
+       <img class="shoppingimg" src="{%static 'img/cart.png'%}" ></a>
+    </div>
+    
       
 <div class="container ">
     <div class="row " style="margin-top: 30px;">
@@ -98,34 +106,28 @@
                 <h1 class="name">{{prod.name}}</h1>
                 <h1 class="price"> تمن: {{prod.price}}دم <span class="notprice">{{prod.notprice}}دم</span></h1>
                 <p  class="content">{{prod.content}}</p>
+                <div class="size">قياسات المتوفرة :{{prod.size}} </div>
 
                 
                 <!--customer info-->
 
-                <div class="mb-2 taille">
+                
                   
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="form-check-label size" for="inlineRadio1">M</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label size" for="inlineRadio2">XL</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label size" for="inlineRadio2">XXL</label>
-                  </div>
-                 </div>
-                   <div >
-                      <input type="submit"  id='continue' class="btn btn-primary continue" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" value="متابعة">
-                   </div>
+               
+              
+                      <div class="center">
+                        <input type="submit"  id='continue' class="btn btn-outline-primary continue" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" value=" شراء الان">
+                       <button  onclick="numbreofproduct()" data-product={{prod.id}} data-img="{{prod.image.url}}" data-category="{{prod.categorie}}" data-price="{{prod.price}}" id="addcart" class="categoryclick btn btn-outline-primary update-cart">اضافة الى السلة</button>
+                     
+
+                      </div>      
                   <div class="collapse" id="collapseExample">
                     <div class="card card-body">
                          <form style="display: flex;flex-direction: column;" method="post">
                           {% csrf_token%}
                           {{customer}}
                           <input type="text " name="id" id="hidden" value="{{prod.id}}">
+                          <p class=" messagesize">سنتصل بك لتحديد القياس</p>
                       <input class="btn btn-primary mt-2" type="submit"  value="طلب">
                   </form>
                         </div>
@@ -158,13 +160,18 @@
 </div>
 
 
-<div class="footer">
-  <div><a href="">conditions </a> </div>
-  <div><a href="">contact us </a></div>
-  <div><a href="">private policy</a> </div>
-</div>
+
 
 <style>
+   .messagesize{
+    text-align: center;
+  }
+  .size{
+    text-align: right;
+    margin-bottom: 10px;
+
+    direction: rtl;
+  }
   .form2{
     
     margin:0 10px;
@@ -207,6 +214,49 @@ top: 10px;
 #hidden ,.hide{
       display: none;
     }
+    nav ul li a{
+    position: relative!important;
+ }
+ nav ul li a::before{
+    content: "";
+    width: 0;
+    left: 0;
+    height: 3px;
+    position: absolute!important;
+    bottom: 3px;
+    background-color: blue;
+    transition: all 0.5s ease;
+ }
+ nav ul li a:hover::before{
+    width: 100%!important;
+ }
+ .logo{
+  width: 70px;
+  height: 40px;
+ }
+ .shopping a{
+              display: flex;
+              position: fixed;
+              right: 15px;
+              top: 40px;
+              z-index: 1;
+             }
+            .shopping a img{
+              width: 40px;
+              height: auto;
+            }
+            .shopping a p{
+              background-color: red;
+              color: aliceblue;
+              font-size: large;
+              padding: 1px;
+              border-radius: 10px;
+            }
+            .center{
+              display: flex;
+              justify-content: space-between;
+            }
+
    
  </style> 
 
@@ -217,5 +267,6 @@ top: 10px;
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
      <script src="{% static 'js/product.js'%}"></script>
+     <script src="{% static 'js/card.js'%}"></script>
   </body>
 </html>

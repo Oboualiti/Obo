@@ -1,0 +1,137 @@
+{% load static %}
+<!doctype html>
+<html lang="ar" >
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Oboualiti Store</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'product:Home' %}"><img class="logo" src="{% static 'img/logo.jpeg' %}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'product:Home' %}">الرئسية <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                الفئة
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{%url 'product:tshirt'%}">القمصان</a>
+                <a class="dropdown-item" href="{%url 'product:pants'%}">السراويل</a>
+                <a class="dropdown-item" href="{%url 'product:shoes'%}">أحذية</a>
+                
+              </div>
+            </li>
+            
+          </ul>  
+        </div>
+      </nav>
+      <div class="all">
+        
+           <div id="somme">0 </div><span>dh</span><div> : المجموع </div>
+      </div>
+      
+    
+        <a href="{%url 'product:cartinfo'%}" class="btn btn-outline-primary center">متابعة</a>
+    
+
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="imgcart">الصورة</th>
+            <th scope="col">الفئة</th>
+            <th scope="col">التمن</th>
+            <th scope="col">حذف</th>
+            
+          </tr>
+        </thead><tbody id="table">
+    
+    
+    
+     <!--
+    
+        
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td ><span id="delete" class="btn btn-outline-danger">delete</span></td>
+         
+          </tr> --> 
+         
+        
+        </tbody>
+      </table>
+
+    
+    
+
+<style>
+  
+.center{
+    display: flex;
+    justify-content: center;
+    
+    margin: 10px 30px;
+}
+
+.imgclass{
+    width: 30px;
+    height: auto;
+}
+  nav ul li a{
+    position: relative!important;
+ }
+ nav ul li a::before{
+    content: "";
+    width: 0;
+    left: 0;
+    height: 3px;
+    position: absolute!important;
+    bottom: 3px;
+    background-color: blue;
+    transition: all 0.5s ease;
+ }
+ nav ul li a:hover::before{
+    width: 100%!important;
+ }
+
+ .logo{
+  width: 70px;
+  height: 40px;
+ }
+.all{
+  margin-top: 30px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  font-size: large;
+  font-weight: 700;
+}
+ 
+
+             </style>   
+
+ 
+     
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{% static 'js/card.js'%}"></script>
+  </body>
+</html>
