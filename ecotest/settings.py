@@ -15,12 +15,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import environ
-
-env = environ.Env()
-
-environ.Env.read_env()
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -29,9 +23,9 @@ environ.Env.read_env()
 SECRET_KEY = 'django-insecure-+1!_d9j6=7p2n^%5t+&k^05fkkm*+wtec700i3zrnon(e(&ix#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -79,19 +73,12 @@ WSGI_APPLICATION = 'ecotest.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-''' 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
-'''
-import dj_database_url
-
-DATABASES = {
-    'default': dj_database_url.parse(env('DATABASES_URL'))
-    
 }
 
 
@@ -132,6 +119,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
+
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -141,5 +129,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #media
 MEDIA_URL = os.path.join(BASE_DIR , 'media')
 MEDIA_URL ='/media/'
-
-
